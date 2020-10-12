@@ -1,74 +1,77 @@
-/**
- * We need flash cards
- *  we need delete button
- *      This button needs functionality
- *  We need edit button
- *      This button needs functionality
- *   We need a button to add flash cards
- *      This button needs fucntionality
- * We need a tile
- * We need a button to add flash cards
- * We need to hide answer and show answer
- *  This is a button and it needs fucntionality
- *
- *
- * summary:
- *  add
- *  edit
- *  delete
- *  show/ hide
- *
- *
- *
- */
-
-class FlashCard {
-  constructor(question, answer) {
-    // this is the text that is shown
-    this.question = document.createElement("h1");
-
-    this.question.innerText = question;
-    console.log(this.question);
-    this.answer = document.createElement("h1");
-    this.answer.innerText = answer;
-
-    this.FlashCardContainer = document.createElement("div");
-    console.log(this.FlashCardContainer);
-    this.FlashCardContainer.appendChild(this.question);
-    this.FlashCardContainer.appendChild(this.answer);
-    //these are the actual buttons
-    //setup show/hide
-    this.showHide = document.createElement("BUTTON");
-    this.showHide.innerText = "Show/Hide";
-    //setup edit
-    this.edit = document.createElement("BUTTON");
-    this.edit.innerText = "Edit";
-    //setup delete
-    this.delete = document.createElement("BUTTON");
-    this.delete.innerText = "Delete";
-    this.delete.addEventListener("click", () =>
-      this.FlashCardContainer.remove()
-    );
-
-    this.FlashCardContainer.appendChild(this.delete);
-    this.FlashCardContainer.appendChild(this.edit);
-    this.FlashCardContainer.appendChild(this.showHide);
+$(document).ready(()=>{
+  class FlashCard {
+    constructor(question, answer){
+      //creating the flash card's elements
+      this.FlashCardContainer = $(`<div></div>`);
+      this.questionContainer = $(`<h1>${question}</h1>`)
+      this.answerContainer = $(`<h1>${answer}</h1>`)
+      this.delete = $(`<button>Delete</button>`);
+      this.edit = $(`<button>Edit</button>`);
+      this.showHideAnswer = $(`<button>Hide Answer</button>`);
+      this.confirmEdit = $(`<button>Confirm</button>`).toggle()
+      this.cancelEdit = $(`<button>Cancel</button>`).toggle()
+      this.stateofAnswer= "";
+      //composing the flashcard 
+      this.FlashCardContainer.append(this.questionContainer, this.answerContainer, this.delete, this.edit, this.showHideAnswer, this.confirmEdit, this.cancelEdit)
+      $("#container").append(this.FlashCardContainer)
+      //adding functionality to buttons
+      this.delete.click(()=>this.FlashCardContainer.remove())
+      this.showHideAnswer.click(()=>{
+        this.answerContainer.toggle()
+      })
+      this.edit.click(()=>{
+        this.stateofAnswer = this.answerContainer.text()
+        let temp = $(`<input value=${this.stateofAnswer}></input>`)
+        this.answerContainer.replaceWith(temp)
+        this.answerContainer = temp;
+        this.delete.toggle();
+        this.showHideAnswer.toggle();
+        this.edit.toggle();
+        this.confirmEdit.toggle();
+        this.cancelEdit.toggle();
+      })
+      this.cancelEdit.click(()=>{
+        let temp = $(`<h1>${this.stateofAnswer}</h1>`)
+        this.answerContainer.replaceWith(temp)
+        this.answerContainer = temp;
+        this.delete.toggle();
+        this.showHideAnswer.toggle();
+        this.edit.toggle();
+        this.confirmEdit.toggle();
+        this.cancelEdit.toggle();
+      })
+      this.confirmEdit.click(()=>{
+        let temp = $(`<h1>${this.answerContainer.val()}</h1>`)
+        this.answerContainer.replaceWith(temp)
+        this.answerContainer = temp;
+        this.delete.toggle();
+        this.showHideAnswer.toggle();
+        this.edit.toggle();
+        this.confirmEdit.toggle();
+        this.cancelEdit.toggle();
+      })
+    }
+    
   }
-}
+  
+  $("#add").click(()=>{
+    new FlashCard($("#questionBox").val(),$("#answerBox").val())
+    $("#questionBox").val("")
+    $("#answerBox").val("")
+  })
 
-const createFlashCard = (question, answer) =>
-  new FlashCard(question, answer).FlashCardContainer;
-//an array that holds all the flash cards
 
-const container = document.getElementById("container");
-const addButton = document.getElementById("add");
-const questionBox = document.getElementById("questionBox");
-const answerBox = document.getElementById("answerBox");
 
-addButton.addEventListener("click", () =>
-  container.appendChild(createFlashCard(questionBox.value, answerBox.value))
-);
 
-// edit basically just replaces the h1 with a seach box add a confirm button then replace back
-// need to figure out how to show and hide elements
-//finally css
+
+
+
+
+
+
+
+
+
+})
+
+
