@@ -2,12 +2,12 @@ $(document).ready(()=>{
   class FlashCard {
     constructor(question, answer){
       //creating the flash card's elements
-      this.FlashCardContainer = $(`<div></div>`);
+      this.FlashCardContainer = $(`<div class="flashcard"></div>`);
       this.questionContainer = $(`<h1>${question}</h1>`)
-      this.answerContainer = $(`<h1>${answer}</h1>`)
+      this.answerContainer = $(`<h1>${answer}</h1>`).toggle()
       this.delete = $(`<button>Delete</button>`);
       this.edit = $(`<button>Edit</button>`);
-      this.showHideAnswer = $(`<button>Hide Answer</button>`);
+      this.showHideAnswer = $(`<button>Show/Hide answer</button>`);
       this.confirmEdit = $(`<button>Confirm</button>`).toggle()
       this.cancelEdit = $(`<button>Cancel</button>`).toggle()
       this.stateofAnswer= "";
@@ -18,6 +18,7 @@ $(document).ready(()=>{
       this.delete.click(()=>this.FlashCardContainer.remove())
       this.showHideAnswer.click(()=>{
         this.answerContainer.toggle()
+        
       })
       this.edit.click(()=>{
         this.stateofAnswer = this.answerContainer.text()
@@ -44,6 +45,7 @@ $(document).ready(()=>{
         let temp = $(`<h1>${this.answerContainer.val()}</h1>`)
         this.answerContainer.replaceWith(temp)
         this.answerContainer = temp;
+        // this.answerContainer.toggle();
         this.delete.toggle();
         this.showHideAnswer.toggle();
         this.edit.toggle();

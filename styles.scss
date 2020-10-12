@@ -1,0 +1,64 @@
+@mixin displayFlexCenter($justify) {
+  display: flex;
+  justify-content: $justify;
+}
+@mixin niceSize() {
+  max-width: 25%;
+}
+
+body {
+  background-color: rgb(255, 197, 142);
+  color: #343434;
+  font-family: "Open Sans", sans-serif;
+  width: 100vw;
+  @include displayFlexCenter(center);
+  flex-direction: column;
+}
+#container {
+  @include displayFlexCenter(center) margin: 10%;
+  .flashcard {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    background-color: #2f3061;
+    color: #6ca6c1;
+    border-radius: 6px;
+    button {
+      margin: 0.5em;
+      padding: 0.5em 1em;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      background-color: #343434;
+      color: white;
+    }
+    &:hover {
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+    margin: 1em;
+  }
+}
+
+#title {
+  @include displayFlexCenter(center);
+}
+
+#form-container {
+  width: 100%;
+  @include displayFlexCenter(center);
+  flex-direction: row;
+  width: 100%;
+  div {
+    width: 100%;
+      @include displayFlexCenter(center);
+      flex-direction: column;
+    #form {
+      @include displayFlexCenter(center);
+      flex-direction: column;
+      @include niceSize();
+    }
+    button {
+      margin: 1em 0em;
+      @include niceSize();
+    }
+  }
+}

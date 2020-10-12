@@ -5,18 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Document</title>
-  <script src="./styles.css"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
-    <h1>Hax's Flashes</h1>
+    <h1 id="title">Hax's Flashes</h1>
+    
+    
+    <div id="form-container">
+      
+      <div>
+
+        <form id="form">
+          Question:
+          <input type="search" name="search" id="questionBox" />
+          Answer:
+          <input type="search" name="search" id="answerBox" />
+          
+        </form>
+        <button id="add">Add</button>
+      </div>
+    </div>
     <div id="container"></div>
-    <form action="">
-      Question:
-      <input type="search" name="search" id="questionBox" />
-      Answer:
-      <input type="search" name="search" id="answerBox" />
-    </form>
-    <button id="add">Add</button>
 
     <script src="./flashcards.js"></script>
   </body>
